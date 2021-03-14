@@ -31,20 +31,32 @@ void write2buf(struct task_struct * task, struct prinfo* ker_buf) {
     ker_buf->uid = task->cred->uid;
     get_task_comm(ker_buf->comm, task);
 
-    if (!list_empty(&(task->children)) {
+    if (!list_empty(&(task->children))) {
         ker_buf->first_child_pid = list_entry((task->children).next, struct task_struct, sibling)->pid;
     } else {
         ker_buf->first_child_pid = 0;
     }
     if (!list_empty(&(task->sibling))) {
-
+        pid_t next_sibling = list_entry((task->sibling).next, struct task_struct, sibling)->pid;
+        pid_t parent_ch = list_entry((task->sibling).next, struct task_struct, children)->pid;
+        if ( next_sibling == parent_ch) {
+            ker_buf->next_sibling_pid = 0;
+        } else ker_buf->next_sibling_pid = next_sibling;
     } else {
         ker_buf->next_sibling_pid = 0;
     }
 }
+
 void DFS(struct task_struct* task, struct prinfo* ker_buf, int *ker_n) {
     write2buf(task, ker_buf + (*ker_n));
-
+    ++(*ker_n);
+    if (ker_buf->first_child_pid == 0) {
+        DFS(list_entry((task->children).next, struct task_struct, sibling), ker_buf + (*ker_n), ker_n);
+    } else {
+        if (ker_buf->next_sibling_pid) {
+            DFS(list_entry((task->sibling).next, struct task_struct, children), ker_buf + (*ker_n), ker_n);
+        } else return;
+    }
 }
 
 int pstree(struct prinfo * buf, int *nr)
@@ -52,7 +64,7 @@ int pstree(struct prinfo * buf, int *nr)
     struct prinfo* ker_buf;
     int* ker_n;
     /* kcalloc(size_t n, size_t size, gfp_t flags) */
-    if (!(ker_buf = kcalloc(N_TASK, sizeof(prinfo)), GFP_KERNEL)) {
+    if (!(ker_buf = kcalloc(N_TASK, sizeof(struct prinfo), GFP_KERNEL))) {
         printk("Failed to allocate kernel buffer.\n");
         return -1;
     }
@@ -67,7 +79,7 @@ int pstree(struct prinfo * buf, int *nr)
     read_unlock(&tasklist_lock);
 
     /* unsigned long copy_to_user(void __user * to, const void * from, unsigned long n); */
-    if (!copy_to_user(buf, ker_buf, N_TASK * sizeof(prinfo))) {
+    if (!copy_to_user(buf, ker_buf, N_TASK * sizeof(struct prinfo))) {
         printk("Failed to copy kernel buffer to user.\n");
         return -1;
     }
@@ -77,6 +89,7 @@ int pstree(struct prinfo * buf, int *nr)
     }
     kfree(ker_buf);
     kfree(ker_n);
+    return 0;
 }
 
 static int (*oldcall)(void);

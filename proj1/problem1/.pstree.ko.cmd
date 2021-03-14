@@ -1,0 +1,1 @@
+cmd_/home/mineos/Documents/os/Proj/proj1/problem1/pstree.ko := arm-linux-androideabi-ld -r  -T /home/mineos/kernel/goldfish/scripts/module-common.lds --build-id  -o /home/mineos/Documents/os/Proj/proj1/problem1/pstree.ko /home/mineos/Documents/os/Proj/proj1/problem1/pstree.o /home/mineos/Documents/os/Proj/proj1/problem1/pstree.mod.o
