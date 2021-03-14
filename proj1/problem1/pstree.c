@@ -39,7 +39,7 @@ void write2buf(struct task_struct * task, struct prinfo* ker_buf) {
     if (!list_empty(&(task->sibling))) {
         pid_t next_sibling = list_entry((task->sibling).next, struct task_struct, sibling)->pid;
         pid_t parent_ch = list_entry((task->sibling).next, struct task_struct, children)->pid;
-        if ( next_sibling == parent_ch) {
+        if ( ker_buf->parent_pid == parent_ch) {
             ker_buf->next_sibling_pid = 0;
         } else ker_buf->next_sibling_pid = next_sibling;
     } else {
@@ -52,13 +52,13 @@ void DFS(struct task_struct* task, struct prinfo* ker_buf, int *ker_n) {
     ++(*ker_n);
     if (ker_buf->first_child_pid == 0) {
         DFS(list_entry((task->children).next, struct task_struct, sibling), ker_buf + (*ker_n), ker_n);
-    } else {
-        if (ker_buf->next_sibling_pid) {
-            DFS(list_entry((task->sibling).next, struct task_struct, children), ker_buf + (*ker_n), ker_n);
-        } else return;
     }
+    if (ker_buf->next_sibling_pid) {
+        DFS(list_entry((task->sibling).next, struct task_struct, children), ker_buf + (*ker_n), ker_n);
+    } else return;
 }
 
+static int (*oldcall)(void);
 int pstree(struct prinfo * buf, int *nr)
 {
     struct prinfo* ker_buf;
@@ -79,11 +79,11 @@ int pstree(struct prinfo * buf, int *nr)
     read_unlock(&tasklist_lock);
 
     /* unsigned long copy_to_user(void __user * to, const void * from, unsigned long n); */
-    if (!copy_to_user(buf, ker_buf, N_TASK * sizeof(struct prinfo))) {
+    if (copy_to_user(buf, ker_buf, N_TASK * sizeof(struct prinfo))) {
         printk("Failed to copy kernel buffer to user.\n");
         return -1;
     }
-    if (!copy_to_user(nr, ker_n, sizeof(int))) {
+    if (copy_to_user(nr, ker_n, sizeof(int))) {
         printk("Failed to copy kernel nr to user.\n");
         return -1;
     }
@@ -92,7 +92,6 @@ int pstree(struct prinfo * buf, int *nr)
     return 0;
 }
 
-static int (*oldcall)(void);
 static int addsyscall_init(void) {
     long *syscall = (long*)0xc000d8c4;
     oldcall = (int(*)(void))(syscall[__NR_pstreecall]);

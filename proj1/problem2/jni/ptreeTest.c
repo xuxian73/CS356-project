@@ -1,4 +1,4 @@
-#include<stdio.h>
+ #include<stdio.h>
 #include<stdlib.h>
 #include<sys/syscall.h>
 #include<unistd.h>
@@ -18,6 +18,7 @@ struct prinfo {
 };
 
 void printTree(struct prinfo* buf, int * nr){
+    /*
     int cur = 0;
     pid_t parent[N_TASK] = {0};
     parent[0] = buf[0].pid;
@@ -42,6 +43,15 @@ void printTree(struct prinfo* buf, int * nr){
             printf("%s,%d,%ld,%d,%d,%d,%d\n", 
                 p.comm, p.pid, p.state, p.parent_pid, p.first_child_pid, p.next_sibling_pid, p.uid);
         }
+    }
+    */
+    struct prinfo p;
+    int i = 0;
+    while (i < (*nr)) {
+        p = buf[i];
+        printf("%s,%d,%ld,%d,%d,%d,%d\n", 
+            p.comm, p.pid, p.state, p.parent_pid, p.first_child_pid, p.next_sibling_pid, p.uid);
+        ++i;
     }
     return;
 }
