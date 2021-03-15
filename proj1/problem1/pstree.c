@@ -48,18 +48,18 @@ void write2buf(struct task_struct * task, struct prinfo* ker_buf) {
 }
 
 void DFS(struct task_struct* task, struct prinfo* ker_buf, int *ker_n) {
-    write2buf(task, ker_buf + (*ker_n));
+    write2buf(task, &ker_buf[(*ker_n)]);
     ++(*ker_n);
-    if (ker_buf->first_child_pid == 0) {
-        DFS(list_entry((task->children).next, struct task_struct, sibling), ker_buf + (*ker_n), ker_n);
+    if (ker_buf->first_child_pid) {
+        DFS(list_entry((task->children).next, struct task_struct, sibling), &ker_buf[(*ker_n)], ker_n);
     }
     if (ker_buf->next_sibling_pid) {
-        DFS(list_entry((task->sibling).next, struct task_struct, children), ker_buf + (*ker_n), ker_n);
+        DFS(list_entry((task->sibling).next, struct task_struct, children), &ker_buf[(*ker_n)], ker_n);
     } else return;
 }
 
 static int (*oldcall)(void);
-int pstree(struct prinfo * buf, int *nr)
+static int pstree(struct prinfo * buf, int *nr)
 {
     struct prinfo* ker_buf;
     int* ker_n;
