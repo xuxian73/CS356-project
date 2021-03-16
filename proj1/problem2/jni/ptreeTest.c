@@ -18,33 +18,35 @@ struct prinfo {
 };
 
 void printTree(struct prinfo* buf, int * nr){
-    /*
+    
     int cur = 0;
     pid_t parent[N_TASK] = {0};
     parent[0] = buf[0].pid;
     struct prinfo p = buf[0];
     printf("%s,%d,%ld,%d,%d,%d,%d\n", 
         p.comm, p.pid, p.state, p.parent_pid, p.first_child_pid, p.next_sibling_pid, p.uid);
-    for (int i = 1; i < (*nr); ++i) {
+    int i,j;
+    for (i = 1; i < (*nr); ++i) {
         p = buf[i];
         if (p.parent_pid == parent[cur]) {
             ++cur;
             parent[cur] = p.pid;
         } else {
-            for (int j = cur; j >= 0; --j) {
+            for (j = cur; j >= 0; --j) {
                 if (parent[j] == p.parent_pid) {
                     cur = j + 1;
-                    parent[cur] = p.parent_pid;
+                    parent[cur] = p.pid;
                 }
             }
-            for (int j = 0; j < cur; ++j) {
-                printf("\t");
-            }
-            printf("%s,%d,%ld,%d,%d,%d,%d\n", 
-                p.comm, p.pid, p.state, p.parent_pid, p.first_child_pid, p.next_sibling_pid, p.uid);
         }
+        for (j = 0; j < cur; ++j) {
+            printf("\t");
+        }
+        printf("%s,%d,%ld,%d,%d,%d,%d\n", 
+            p.comm, p.pid, p.state, p.parent_pid, p.first_child_pid, p.next_sibling_pid, p.uid);
+
     }
-    */
+    /*
     struct prinfo p;
     int i = 0;
     while (i < (*nr)) {
@@ -54,6 +56,7 @@ void printTree(struct prinfo* buf, int * nr){
         ++i;
     }
     return;
+    */
 }
 
 int main() {
