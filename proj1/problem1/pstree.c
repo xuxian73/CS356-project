@@ -1,3 +1,8 @@
+/*
+ * problem1:
+ * write a new system call pstree in Linux 
+ * pstree can be used to see the relataionship of process intuitively
+ */
 #include<linux/module.h>
 #include<linux/kernel.h>
 #include<linux/init.h>
@@ -24,6 +29,7 @@ struct prinfo {
     char comm[64];              /* name of program executed */
 };
 
+/* write infomation of task to buffer */
 void write2buf(struct task_struct * task, struct prinfo* ker_buf) {
     ker_buf->parent_pid = task->parent->pid;
     ker_buf->pid = task->pid;
@@ -47,6 +53,7 @@ void write2buf(struct task_struct * task, struct prinfo* ker_buf) {
     }
 }
 
+/* DFS the process tree */
 void DFS(struct task_struct* task, struct prinfo* ker_buf, int *ker_n) {
     write2buf(task, &ker_buf[(*ker_n)]);
     ++(*ker_n);

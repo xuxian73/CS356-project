@@ -1,4 +1,9 @@
- #include<stdio.h>
+/*
+ * used to test system call pstree
+ * using tabs to indent children with respect to the parents
+ * format: comm, pid, state, parent_pid, first_child_pid, next_sibling_pid, uid
+ */
+#include<stdio.h>
 #include<stdlib.h>
 #include<sys/syscall.h>
 #include<unistd.h>
@@ -17,6 +22,7 @@ struct prinfo {
     char comm[64];              /* name of program executed */
 };
 
+/* print the thread tree */
 void printTree(struct prinfo* buf, int * nr){
     
     int cur = 0;
