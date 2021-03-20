@@ -1,0 +1,146 @@
+Cooks[2], Cashiers[4], Customers[41]
+Customer [11] come.
+Customer [7] come.
+Customer [3] come.
+Customer [1] come.
+Cashier [3] accepts an order.
+Cashier [2] accepts an order.
+Cashier [1] accepts an order.
+Cashier [4] accepts an order.
+Customer [5] come.
+Customer [6] come.
+Customer [17] come.
+Customer [2] come.
+Cook [2] make a burger.
+Cook [1] make a burger.
+Cashier [3] take a burger to customer.
+Cashier [3] accepts an order.
+Cashier [3] take a burger to customer.
+Cashier [3] accepts an order.
+Customer [38] come.
+Customer [41] come.
+Cook [2] make a burger.
+Cook [1] make a burger.
+Cashier [2] take a burger to customer.
+Cashier [2] accepts an order.
+Cashier [2] take a burger to customer.
+Cashier [2] accepts an order.
+Customer [26] come.
+Cook [2] make a burger.
+Cook [1] make a burger.
+Cashier [2] take a burger to customer.
+Cashier [2] accepts an order.
+Cashier [2] take a burger to customer.
+Cashier [2] accepts an order.
+Customer [4] come.
+Customer [12] come.
+Cook [2] make a burger.
+Cook [1] make a burger.
+Cashier [2] take a burger to customer.
+Cashier [2] accepts an order.
+Cashier [2] take a burger to customer.
+Cashier [2] accepts an order.
+Cook [2] make a burger.
+Cook [1] make a burger.
+Cashier [2] take a burger to customer.
+Cashier [2] accepts an order.
+Cashier [2] take a burger to customer.
+Customer [10] come.
+Cashier [2] accepts an order.
+Cook [2] make a burger.
+Cook [1] make a burger.
+Cashier [1] take a burger to customer.
+Cashier [4] take a burger to customer.
+Customer [9] come.
+Cashier [1] accepts an order.
+Customer [8] come.
+Cashier [4] accepts an order.
+Cook [2] make a burger.
+Cook [1] make a burger.
+Cashier [3] take a burger to customer.
+Cashier [2] take a burger to customer.
+Customer [27] come.
+Cashier [3] accepts an order.
+Customer [15] come.
+Cashier [2] accepts an order.
+Cook [1] make a burger.
+Cashier [1] take a burger to customer.
+Cook [2] make a burger.
+Cashier [4] take a burger to customer.
+Customer [19] come.
+Cashier [1] accepts an order.
+Cook [1] make a burger.
+Cashier [3] take a burger to customer.
+Cook [2] make a burger.
+Cashier [2] take a burger to customer.
+Customer [16] come.
+Customer [20] come.
+Cashier [4] accepts an order.
+Cashier [3] accepts an order.
+Cook [1] make a burger.
+Cashier [1] take a burger to customer.
+Cook [2] make a burger.
+Cashier [4] take a burger to customer.
+Customer [13] come.
+Cashier [2] accepts an order.
+Cook [1] make a burger.
+Cashier [3] take a burger to customer.
+Customer [14] come.
+Cashier [1] accepts an order.
+Cook [2] make a burger.
+Cashier [2] take a burger to customer.
+Cook [1] make a burger.
+Cashier [1] take a burger to customer.
+Cook [2] make a burger.
+Customer [29] come.
+Cashier [4] accepts an order.
+Cashier [4] take a burger to customer.
+Customer [32] come.
+Customer [35] come.
+Cashier [3] accepts an order.
+Cashier [2] accepts an order.
+Customer [18] come.
+Cashier [1] accepts an order.
+Cook [1] make a burger.
+Cashier [3] take a burger to customer.
+Cook [2] make a burger.
+Cashier [2] take a burger to customer.
+Cook [1] make a burger.
+Cashier [1] take a burger to customer.
+Cook [2] make a burger.
+Customer [28] come.
+Cashier [4] accepts an order.
+Cashier [4] take a burger to customer.
+Cook [1] make a burger.
+Cook [2] make a burger.
+Customer [30] come.
+Customer [25] come.
+Customer [23] come.
+Customer [21] come.
+Cashier [4] accepts an order.
+Cashier [4] take a burger to customer.
+Cashier [4] accepts an order.
+Cashier [4] take a burger to customer.
+Cashier [4] accepts an order.
+Cashier [3] accepts an order.
+Cook [1] make a burger.
+Cashier [4] take a burger to customer.
+Cook [2] make a burger.
+Cashier [3] take a burger to customer.
+Customer [31] come.
+Cashier [2] accepts an order.
+Customer [33] come.
+Cashier [1] accepts an order.
+Cook [1] make a burger.
+Cashier [2] take a burger to customer.
+Cook [2] make a burger.
+Cashier [1] take a burger to customer.
+Cook [1] make a burger.
+Customer [39] come.
+Cashier [4] accepts an order.
+Cashier [4] take a burger to customer.
+Cook [2] make a burger.
+Cook [1] make a burger.
+Customer [24] come.
+Cashier [4] accepts an order.
+Cashier [4] take a burger to customer.

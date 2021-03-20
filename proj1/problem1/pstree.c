@@ -38,11 +38,13 @@ void write2buf(struct task_struct * task, struct prinfo* ker_buf) {
     get_task_comm(ker_buf->comm, task);
 
     if (!list_empty(&(task->children))) {
+        /* when has children, children.next point to the sibling entry of child*/
         ker_buf->first_child_pid = list_entry((task->children).next, struct task_struct, sibling)->pid;
     } else {
         ker_buf->first_child_pid = 0;
     }
     if (!list_empty(&(task->sibling))) {
+        /* when do not have sibling, sibling.next point to the children entry of parent*/
         pid_t next_sibling = list_entry((task->sibling).next, struct task_struct, sibling)->pid;
         pid_t parent_ch = list_entry((task->sibling).next, struct task_struct, children)->pid;
         if ( ker_buf->parent_pid == parent_ch) {
@@ -57,9 +59,11 @@ void write2buf(struct task_struct * task, struct prinfo* ker_buf) {
 void DFS(struct task_struct* task, struct prinfo* ker_buf, int *ker_n) {
     write2buf(task, &ker_buf[(*ker_n)]);
     ++(*ker_n);
+    /* child first */
     if (ker_buf->first_child_pid) {
         DFS(list_entry((task->children).next, struct task_struct, sibling), ker_buf, ker_n);
     }
+    /* sibling next */
     if (ker_buf->next_sibling_pid) {
         DFS(list_entry((task->sibling).next, struct task_struct, sibling), ker_buf, ker_n);
     } else return;

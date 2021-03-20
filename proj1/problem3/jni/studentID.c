@@ -1,3 +1,8 @@
+/*
+ * studentID.c
+ * Use two thread to printf pid of parent and child
+ * Use program of problem2 two print relationship of parent and child
+ */
 #include<stdio.h>
 #include<stdlib.h>
 #include<sys/syscall.h>

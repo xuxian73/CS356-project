@@ -13,7 +13,7 @@
 
 sem_t sem_customer, sem_empty, sem_fill, sem_quit;
 sem_t mutex;
-int left;
+int left;   /* number of customer to be served */
 int N_COOK, N_CASHIER, N_CUSTOMER, N_RACK;
 pthread_t* cook_thread;
 pthread_t* cashier_thread;
@@ -46,6 +46,8 @@ void *cashier(void *argv) {
         sem_post(&sem_empty);
         sem_wait(&mutex);
         --left;
+        /* when there is no customer left 
+           use quit to kill all thread */
         if(left == 0) {
             printf("quit triggered");
             sem_post(&sem_quit);
